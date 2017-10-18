@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
   <title>leaflet-map-simple</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,7 @@
   <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
   integrity="sha384-6rCYjRgWDEI2RlZxiVihj1WIZB/uvFiRCGpavTVgFrSPDL0Bk1AiqCW+mmv5h0LP"
   crossorigin="anonymous"></script>
-  <!-- Load Omnivore plugin to convert CSV to GeoJSON format -->
+  <!-- Load Omnivore plugin to convert CSV to GeoJSON format --
   <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
 
   <!-- Position the map and title with Cascading Style Sheet (.css) -->
@@ -23,7 +22,6 @@
   </style>
 </head>
 <body>
-
   <!-- Display the map and title with HTML division tags  -->
   <div id="map-title">EDIT your map title</div>
   <div id="map"></div>
@@ -39,15 +37,15 @@
   });
 
   /* Control panel to display map layers */
-  // var controlLayers = L.control.layers( null, null, {
-  //  position: "topright",
-  //  collapsed: false
-  // }).addTo(map);
+  var controlLayers = L.control.layers( null, null, {
+    position: "topright",
+    collapsed: false
+   }).addTo(map);
 
   /* Carto light-gray basemap tiles with labels */
   var light = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
-  }).addTo(map); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
+  }); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
   // controlLayers.addBaseLayer(light, 'Carto Light basemap');
 
   /* Stamen colored terrain basemap tiles with labels */
@@ -61,17 +59,17 @@
   .bindPopup("Insert pop-up text here"); // EDIT pop-up text message
 
   /* Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
-  // var customLayer = L.geoJson(null, {
-  //  onEachFeature: function(feature, layer) {
-  //    layer.bindPopup(feature.properties.Title);
-  //  }
-  // });
-  // var runLayer = omnivore.csv('data.csv', null, customLayer)
-  // .on('ready', function() {
-  //  map.fitBounds(runLayer.getBounds());
-  // }).addTo(map);
-  // controlLayers.addOverlay(customLayer, 'Markers from data.csv');
+  var customLayer = L.geoJson(null, {
+    onEachFeature: function(feature, layer) {
+      layer.bindPopup(feature.properties.Title);
+    }
+   });
+   var runLayer = omnivore.csv('data.csv', null, customLayer)
+   .on('ready', function() {
+    map.fitBounds(runLayer.getBounds());
+   }).addTo(map);
+   controlLayers.addOverlay(customLayer, 'Markers from data.csv');
 
   </script>
 </body>
-</html>
+  </htm>
